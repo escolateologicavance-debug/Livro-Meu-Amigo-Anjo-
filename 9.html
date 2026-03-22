@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Amigo Anjo - Capítulo 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f4f1e8;font-family:'Permanent Marker', cursive;color:#222;}
+.container{max-width:900px;margin:auto;padding:30px;}
+h1{text-align:center;font-size:40px;margin-bottom:5px;}
+h2{text-align:center;margin-top:0;margin-bottom:30px;}
+.page{display:none;font-size:20px;line-height:1.8;text-transform:uppercase;animation:virar .5s;}
+.page.active{display:block;}
+@keyframes virar{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
+.controls{text-align:center;margin-top:40px;}
+button{padding:12px 20px;font-size:16px;border:none;background:#222;color:white;cursor:pointer;margin:5px;border-radius:6px;}
+button:hover{background:#444;}
+.btn-stop {background: #900;}
+.btn-stop:hover {background: #b00;}
+.nextcap{display:block;margin-top:30px;font-size:18px;text-decoration:none;color:#000;}
+.img-container {text-align: center;margin: 20px 0;}
+.img-container img {max-width: 100%;border-radius: 8px;box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>MEU AMIGO ANJO</h1>
+<h2>CAPÍTULO 9 — O PESO DA INTERCESSÃO</h2>
+
+<div class="page active">
+QUANDO A EMBARCAÇÃO FINALMENTE RETORNOU A BABILÔNIA, A ROTINA DA CASA MUDOU. ZORAVAR PERCEBEU QUE O SENHOR NÃO CONVOCAVA AUDIÊNCIAS. MENSAGEIROS ERAM DESPACHADOS COM INSTRUÇÕES SIMPLES E REUNIÕES DO CONSELHO FORAM ADIADAS.
+
+ALGO DIFERENTE SE INSTALOU NAQUELA CASA. O SENHOR PASSAVA CADA VEZ MAIS TEMPO NA BIBLIOTECA, ESTUDANDO TEXTOS ANTIGOS, PROFETAS E PROMESSAS. ENTRE ELES, OS ROLOS DE JEREMIAS. ELE ENCONTROU UMA PASSAGEM, UMA CONTAGEM: SETENTA ANOS. SE AQUILO FOSSE VERDADE, HAVIA ESPERANÇA, E ALGUÉM PRECISAVA CLAMAR POR ELA.
+</div>
+
+<div class="page">
+AS REFEIÇÕES TORNARAM-SE INEXISTENTES. ALGUNS DIAS PASSAVAM COM APENAS ÁGUA E PÃO. ZORAVAR TENTOU ARGUMENTAR, MAS ELE RESPONDIA: — HÁ FORÇAS QUE NÃO VÊM DA MESA.
+
+A CASA TORNOU-SE SILENCIOSA. NA BIBLIOTECA, PODIA-SE OUVIR UMA VOZ BAIXA ORANDO. NÃO ERA FORMAL, ERA A VOZ DE UM HOMEM FALANDO COM DEUS COMO QUEM CARREGA O PESO DE UMA NAÇÃO INTEIRA. ELE BUSCAVA MISERICÓRDIA PARA UM POVO QUE SE AFASTOU E PARA UMA CIDADE EM RUÍNAS.
+</div>
+
+<div class="page">
+NUMA TARDE SILENCIOSA, ELE SE AJOELHOU DIANTE DOS ROLOS ABERTOS:
+— AH, SENHOR… DEUS GRANDE E TREMUNDO… PECAMOS. PROCEDEMOS IMPIAMENTE. FOMOS REBELDES. O SENHOR É JUSTO, MAS NÓS CARREGAMOS A VERGONHA DO NOSSO ROSTO.
+
+<div class="img-container">
+    <img src="intercessao.png" alt="O Escriba em oração profunda na biblioteca">
+</div>
+
+— Ó SENHOR… OUVE. Ó SENHOR… PERDOA. AGE SEM DEMORA… PORQUE A TUA CIDADE E O TEU POVO SÃO CHAMADOS PELO TEU NOME. ELE PERMANECEU PROSTRADO, CONFESSANDO E INTERCEDENDO.
+</div>
+
+<div class="page">
+ENQUANTO AINDA FALAVA, O AR NA SALA MUDOU. UMA PRESENÇA ATRAVESSOU O ESPAÇO COMO UM VENTO SILENCIOSO. NA HORA DO SACRIFÍCIO DA TARDE, ALGUÉM ESTAVA ALI. A MESMA PRESENÇA DE OUTRORA.
+
+O MENSAGEIRO FALOU: — AGORA SAÍ PARA FAZER-TE ENTENDER O SENTIDO. NO PRINCÍPIO DAS TUAS SÚPLICAS SAIU A ORDEM, E EU VIM PARA DECLARAR-TE.
+
+ENTÃO VEIO A FRASE QUE MUDARIA TUDO: — PORQUE ÉS MUITO AMADO. PRESTA ATENÇÃO NAS PALAVRAS E ENTENDE A VISÃO. A REVELAÇÃO ESTAVA PRESTES A COMEÇAR, MAS O HOMEM AINDA PERMANECIA EM SILÊNCIO DIANTE DO MENSAGEIRO DO CÉU.
+</div>
+
+<div class="controls">
+<button onclick="prevPage()">◀ PÁGINA</button>
+<button onclick="nextPage()">PÁGINA ▶</button>
+<button onclick="lerTexto()">🔊 OUVIR</button>
+<button class="btn-stop" onclick="pararAudio()">⏹ PARAR</button>
+<a class="nextcap" href="10.html">IR PARA CAPÍTULO 10 ➜</a>
+</div>
+</div>
+
+<script>
+
+let pages=document.querySelectorAll(".page")
+let current=0
+
+function showPage(i){
+pages[current].classList.remove("active")
+current=i
+pages[current].classList.add("active")
+}
+
+function nextPage(){
+if(current<pages.length-1){
+showPage(current+1)
+}
+}
+
+function prevPage(){
+if(current>0){
+showPage(current-1)
+}
+}
+
+function lerTexto(){
+    pararAudio();
+    let texto = "";
+    pages.forEach(p => {
+        texto += p.innerText + " ";
+    });
+    let speech = new SpeechSynthesisUtterance(texto);
+    speech.lang = "pt-BR";
+    speech.rate = 0.9;
+    window.speechSynthesis.speak(speech);
+}
+
+function pararAudio(){
+    window.speechSynthesis.cancel();
+}
+
+</script>
+
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+</body>
+</html>

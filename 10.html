@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Amigo Anjo - Capítulo 10</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f4f1e8;font-family:'Permanent Marker', cursive;color:#222;}
+.container{max-width:900px;margin:auto;padding:30px;}
+h1{text-align:center;font-size:40px;margin-bottom:5px;}
+h2{text-align:center;margin-top:0;margin-bottom:30px;}
+.page{display:none;font-size:20px;line-height:1.8;text-transform:uppercase;animation:virar .5s;}
+.page.active{display:block;}
+@keyframes virar{from{transform:rotateY(90deg);opacity:0}to{transform:rotateY(0);opacity:1}}
+.controls{text-align:center;margin-top:40px;}
+button{padding:12px 20px;font-size:16px;border:none;background:#222;color:white;cursor:pointer;margin:5px;border-radius:6px;}
+button:hover{background:#444;}
+.btn-stop {background: #900;}
+.btn-stop:hover {background: #b00;}
+.nextcap{display:block;margin-top:30px;font-size:18px;text-decoration:none;color:#000;}
+.img-container {text-align: center;margin: 20px 0;}
+.img-container img {max-width: 100%;border-radius: 8px;box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>MEU AMIGO ANJO</h1>
+<h2>CAPÍTULO 10 — ÀS MARGENS DO HIDÉQUEL</h2>
+
+<div class="page active">
+A LUZ DA TARDE DESCIA SOBRE AS ÁGUAS DO GRANDE RIO HIDÉQUEL. O VENTO LEVANTAVA ONDULAÇÕES QUE REFLETIAM O CÉU COMO METAL POLIDO. O HOMEM PERMANECIA ALI, SENTINDO O PESO DE TRÊS SEMANAS DE ABSTINÊNCIA. SEM MANJARES, SEM VINHO, SEM PERFUMES. ELE PRECISAVA DE SILÊNCIO. PRECISAVA ENTENDER.
+
+AS VISÕES VOLTAVAM E PERSISTIAM COM UMA COERÊNCIA QUE NÃO PODIA SER IGNORADA. POR ISSO VIERAM OS JEJUNS E AS LONGAS NOITES DE ORAÇÃO. AGORA, DIANTE DELE, A FIGURA PERMANECIA IMÓVEL. O LINHO DE SUAS VESTES MOVIA-SE COM O VENTO E A LUZ REFLETIA NO CINTO DOURADO.
+</div>
+
+<div class="page">
+O CORPO DO HOMEM DENUNCIAVA O IMPACTO. AS FORÇAS PARECIAM ABANDONÁ-LO. AO REDOR, OS HOMENS QUE O ACOMPANHAVAM HAVIAM DESAPARECIDO, FUGINDO DE UM TEMOR INEXPLICÁVEL. ELE ESTAVA SOZINHO DIANTE DO MENSAGEIRO.
+
+A VOZ SE FEZ OUVIR, COM A FORÇA DE MUITAS VOZES REUNIDAS. SEUS JOELHOS CEDERAM E ELE CAIU COM O ROSTO EM TERRA. ENTÃO SENTIU UMA MÃO FIRME E SERENA QUE O ERGUEU LENTAMENTE.
+— NÃO TEMAS. DESDE O PRIMEIRO DIA EM QUE APLICASTE O TEU CORAÇÃO PARA COMPREENDER, AS TUAS PALAVRAS FORAM OUVIDAS. EU VIM POR CAUSA DAS TUAS PALAVRAS.
+</div>
+
+<div class="page">
+<div class="img-container">
+    <img src="rio-hidequel-hq.png" alt="O encontro monumental às margens do Rio Tigre em estilo HQ">
+</div>
+— MAS O PRÍNCIPE DO REINO DA PÉRSIA RESISTIU DURANTE VINTE E UM DIAS. MIGUEL, UM DOS PRIMEIROS PRÍNCIPES, VEIO AJUDAR-ME.
+
+A REVELAÇÃO ERA GRANDE DEMAIS. POR TRÁS DOS REINOS VISÍVEIS, EXISTIA OUTRA DISPUTA INVISÍVEL. O MENSAGEIRO PROSSEGUIU: — AGORA VIM PARA FAZER-TE ENTENDER O QUE ACONTECERÁ AO TEU POVO NOS ÚLTIMOS DIAS. PORQUE A VISÃO AINDA É PARA MUITOS DIAS.
+</div>
+
+<div class="page">
+O MENSAGEIRO FALOU SOBRE O FUTURO: — NENHUM DOMÍNIO HUMANO PERMANECE PARA SEMPRE. UM NOVO PODER SURGIRÁ DO OCIDENTE, AVANÇANDO COMO TEMPESTADE. MAS ESSE DOMÍNIO TAMBÉM NÃO PERMANECERÁ INTEIRO, POIS O CORAÇÃO DOS HOMENS RARAMENTE PERMANECE UNIDO QUANDO O PODER CRESCE ALÉM DA MEDIDA.
+
+— HAVERÁ TEMPOS DE FAVOR, MAS TAMBÉM DE GRANDE PROVAÇÃO. ALGUNS TENTARÃO APAGAR A MEMÓRIA DO DEUS DE TEUS PAIS. PORÉM, AQUELES QUE CONHECEM O SEU DEUS PERMANECERÃO FORTES. ELES RESISTIRÃO. E MUITOS COMPREENDERÃO.
+</div>
+
+<div class="page">
+O CÉU ASSUMIA AS CORES DO ENTARDECER. O HOMEM COMPREENDEU QUE AS VISÕES FAZIAM PARTE DE ALGO MUITO MAIOR: A HISTÓRIA DOS HOMENS VISTA DO ALTO.
+
+— GUARDA ESTAS PALAVRAS EM TEU CORAÇÃO — DISSE O MENSAGEIRO — PORQUE AINDA HAVERÁ MAIS PARA TE SER MOSTRADO.
+
+ESTE ENCONTRO À BEIRA DO HIDÉQUEL SERIA O INÍCIO DE UMA REVELAÇÃO QUE ATRAVESSARIA GERAÇÕES.
+</div>
+
+<div class="controls">
+<button onclick="prevPage()">◀ PÁGINA</button>
+<button onclick="nextPage()">PÁGINA ▶</button>
+<button onclick="lerTexto()">🔊 OUVIR</button>
+<button class="btn-stop" onclick="pararAudio()">⏹ PARAR</button>
+<a class="nextcap" href="11.html">IR PARA CAPÍTULO 11 ➜</a>
+</div>
+</div>
+
+<script>
+
+let pages=document.querySelectorAll(".page")
+let current=0
+
+function showPage(i){
+pages[current].classList.remove("active")
+current=i
+pages[current].classList.add("active")
+}
+
+function nextPage(){
+if(current<pages.length-1){
+showPage(current+1)
+}
+}
+
+function prevPage(){
+if(current>0){
+showPage(current-1)
+}
+}
+
+function lerTexto(){
+    pararAudio();
+    let texto = "";
+    pages.forEach(p => {
+        texto += p.innerText + " ";
+    });
+    let speech = new SpeechSynthesisUtterance(texto);
+    speech.lang = "pt-BR";
+    speech.rate = 0.9;
+    window.speechSynthesis.speak(speech);
+}
+
+function pararAudio(){
+    window.speechSynthesis.cancel();
+}
+
+</script>
+
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+</body>
+</html>

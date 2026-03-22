@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Meu Amigo Anjo</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="logo-192.png">
+
+</head>
+
+<body style="margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;">
+
+<img src="logo-512.png" style="max-width:100%;height:auto;">
+
+<script>
+
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("sw.js");
+}
+
+setTimeout(function(){
+window.location.href="1.html";
+},3000);
+
+</script>
+
+</body>
+</html>

@@ -49,78 +49,33 @@ const FILES = [
 
 
 // INSTALAÇÃO
-self.addEventListener("install", event => {
-  console.log("Service Worker instalando...");
-
-  self.skipWaiting();
-
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return Promise.all(
-        FILES.map(file => {
-          return cache.add(file).catch(err => {
-            console.error("Erro ao salvar:", file, err);
-          });
-        })
-      );
-    })
-  );
-});
-
-
-// ATIVAÇÃO
-self.addEventListener("activate", event => {
-  console.log("Service Worker ativado");
-
-  event.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            console.log("Apagando cache antigo:", key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
-  );
-
-  return self.clients.claim();
-});
-
-
-// FETCH (BUSCA DE ARQUIVOS)
 self.addEventListener("fetch", event => {
+
+  if (event.request.method !== "GET") return;
 
   event.respondWith(
 
-    caches.match(event.request).then(cachedResponse => {
+    caches.match(event.request).then(response => {
 
-      // se existir no cache
-      if (cachedResponse) {
-        return cachedResponse;
+      if (response) {
+        return response;
       }
 
-      // se não existir, busca na internet
-      return fetch(event.request)
-        .then(networkResponse => {
+      return fetch(event.request).then(networkResponse => {
 
-          // salva no cache automaticamente
-          return caches.open(CACHE_NAME).then(cache => {
+        if (!networkResponse || networkResponse.status !== 200) {
+          return networkResponse;
+        }
 
-            cache.put(event.request, networkResponse.clone());
+        const responseClone = networkResponse.clone();
 
-            return networkResponse;
-
-          });
-
-        })
-        .catch(() => {
-          // fallback se offline
-          if (event.request.destination === "document") {
-            return caches.match("index.html");
-          }
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
         });
+
+        return networkResponse;
+
+      });
 
     })
 

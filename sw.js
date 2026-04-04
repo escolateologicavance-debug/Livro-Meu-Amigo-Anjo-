@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "livro-anjo-v3";
+const CACHE_NAME = "livro-anjo-v4";
 
 // Arquivos principais do app
 const FILES = [

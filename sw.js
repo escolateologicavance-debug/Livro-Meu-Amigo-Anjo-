@@ -1,8 +1,8 @@
+const CACHE_NAME = "livro-anjo-v5";
 
-const CACHE_NAME = "livro-anjo-v4";
+// arquivos principais do livro
+const STATIC_FILES = [
 
-// Arquivos principais do app
-const FILES = [
   "./",
   "index.html",
   "autor.html",
@@ -45,37 +45,110 @@ const FILES = [
   "rio-hidequel-hq.png",
   "sala-decisoes-hq.png",
   "visao-final-hq.png"
+
 ];
 
 
 // INSTALAÇÃO
+self.addEventListener("install", event => {
+
+  console.log("Service Worker instalando...");
+
+  self.skipWaiting();
+
+  event.waitUntil(
+
+    caches.open(CACHE_NAME).then(cache => {
+
+      return cache.addAll(STATIC_FILES);
+
+    })
+
+  );
+
+});
+
+
+// ATIVAÇÃO
+self.addEventListener("activate", event => {
+
+  console.log("Service Worker ativado");
+
+  event.waitUntil(
+
+    caches.keys().then(keys => {
+
+      return Promise.all(
+
+        keys.map(key => {
+
+          if (key !== CACHE_NAME) {
+
+            console.log("Removendo cache antigo:", key);
+
+            return caches.delete(key);
+
+          }
+
+        })
+
+      );
+
+    })
+
+  );
+
+  return self.clients.claim();
+
+});
+
+
+// BUSCA DE ARQUIVOS
 self.addEventListener("fetch", event => {
 
   if (event.request.method !== "GET") return;
 
   event.respondWith(
 
-    caches.match(event.request).then(response => {
+    caches.match(event.request).then(cached => {
 
-      if (response) {
-        return response;
+      if (cached) {
+
+        return cached;
+
       }
 
-      return fetch(event.request).then(networkResponse => {
+      return fetch(event.request)
 
-        if (!networkResponse || networkResponse.status !== 200) {
-          return networkResponse;
-        }
+        .then(response => {
 
-        const responseClone = networkResponse.clone();
+          if (!response || response.status !== 200) {
 
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
+            return response;
+
+          }
+
+          const responseClone = response.clone();
+
+          caches.open(CACHE_NAME).then(cache => {
+
+            cache.put(event.request, responseClone);
+
+          });
+
+          return response;
+
+        })
+
+        .catch(() => {
+
+          if (event.request.destination === "document") {
+
+            return caches.match("index.html");
+
+          }
+
         });
-
-        return networkResponse;
-
-      });
 
     })
 

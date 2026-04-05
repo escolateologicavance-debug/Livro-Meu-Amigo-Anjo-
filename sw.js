@@ -19,6 +19,8 @@ const FILES_TO_CACHE = [
 "logo-512.png",
 "musica.mp3",
 
+
+"babilonia.png",
 "aparicao-anjo-deserto-hq.png",
 "aparicao-deserto-hq.png",
 "banquete-belsazar-hq.png",
